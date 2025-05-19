@@ -33,25 +33,25 @@ def toggle_osa(nimi, fail, x, y):
         canvas.delete(objektid[nimi])
         olemas[nimi]=False
     else:
-        pil_img= Image.open(fail).convert("RGBA").resize((400x400))
+        pil_img= Image.open("cat.png").convert("RGBA").resize((400,400))
         tk_img=ImageTk.PhotoImage(pil_img)
         pildid[nimi]=tk_img
         objektid[nimi]=canvas.create_image(x, y, image=tk_img)
         olemas[nimi]=True
 
-def mängi_muusika():
-    pygame.mixer.music.play(loops=-1)
-def peata_muusika():
-    pygame.mixer.music.stop()
-pygame.mixer.init()
-pygame.mixer.music.load("taustamuusika.mp3")
+# def mängi_muusika():
+#     pygame.mixer.music.play(loops=-1)
+# def peata_muusika():
+#     pygame.mixer.music.stop()
+# pygame.mixer.init()
+# pygame.mixer.music.load("taustamuusika.mp3")
 
 app=ctk.CTk()
 app.geometry("800x500")
 app.title("Näo koostaja nuppudega")
 
 #Canvas paremal
-canvas=Canvas(app,wight=400,height=400,bg="white")
+canvas=Canvas(app,width=400,height=400,bg="white")
 canvas.pack(side="right", padx=10, pady=10)
 
 toggle_osa("nägu", "alus.png", 200, 200)
@@ -60,23 +60,23 @@ olemas["nägu"]=True
 frame = ctk.CTkFrame(app)
 frame.pack(side="left",padx=0,pady=10)
 seaded={
-    "wight": 150, "height":40,
+    "width": 150, "height":40,
     "font": ("Segoe UI Emoji",32),
     "fg_color":"#4CAF50",
     "text_color":"white",
     "corner_radius":20}
 ctk.CTkLabel(frame, text="Vali näoosad:", **seaded).pack(pady=5)
-ctk.CTkButton(frame, text="Otsmik", command=lambda: toggle_osa("otmik, otsmik1.png",200,200) ,**seaded).pack(pady=3)
-ctk.CTkButton(frame, text="Silmad", command=lambda: toggle_osa("silmad, silmad1.png",200,200) ,**seaded).pack(pady=3)
-ctk.CTkButton(frame, text="Nina", command=lambda: toggle_osa("nina, nina1.png",200,200) ,**seaded).pack(pady=3)
-ctk.CTkButton(frame, text="Suu", command=lambda: toggle_osa("suu, suu1.png",200,200) ,**seaded).pack(pady=3)
+ctk.CTkButton(frame, text="Otsmik", command=lambda: toggle_osa("otmik, otsmik1.png",200,200) ,**seaded).pack(pady=5)
+ctk.CTkButton(frame, text="Silmad", command=lambda: toggle_osa("silmad, silmad1.png",200,200) ,**seaded).pack(pady=5)
+ctk.CTkButton(frame, text="Nina", command=lambda: toggle_osa("nina, nina1.png",200,200) ,**seaded).pack(pady=5)
+ctk.CTkButton(frame, text="Suu", command=lambda: toggle_osa("suu, suu1.png",200,200) ,**seaded).pack(pady=5)
 nupp=ctk.CTkButton(frame, text="Salvesta nägu", command=salvesta_nägu, **seaded)
 nupp.pack(pady=10)
 
 frame_mus=ctk.CTkFrame(frame)
 frame_mus.pack(pady=10,padx=10)
 
-ctk.CTkButton(frame_mus, text="Mängi muusikat", fg_color="#4CAF550", command=mängi_muusika).pack(side="left",pady=10)
-ctk.CTkButton(frame_mus, text="Peata muusika", fg_color="#4CAF550", command=peata_muusika).pack(side="left",pady=10)
+# ctk.CTkButton(frame_mus, text="Mängi muusikat", fg_color="#4CAF550", command=mängi_muusika).pack(side="left",pady=10)
+# ctk.CTkButton(frame_mus, text="Peata muusika", fg_color="#4CAF550", command=peata_muusika).pack(side="left",pady=10)
 
 app.mainloop()
